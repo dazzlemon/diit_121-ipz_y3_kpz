@@ -1,6 +1,6 @@
 % fact name     X  Y  Z
 % matrix declaration(name and dimensions)
-tensor3(tensor3_1, 3, 3, 3).
+tensor3Declaration(tensor3_1, 3, 3, 3).
 
 % fact name     X  Y  Z Val
 % cell's value assignment(name, indices and value)
@@ -26,14 +26,14 @@ verifyIndex(I, IMax) :-
   I =< IMax.  
 
 tensor3Val(Name, X,    Y,    Z, Val) :-
-  tensor3( Name, Xmax, Ymax, Zmax),
+  tensor3Declaration( Name, Xmax, Ymax, Zmax),
   verifyIndex(X, Xmax),
   verifyIndex(Y, Ymax),
   verifyIndex(Z, Zmax),
   tensor3( Name, X,    Y,    Z, Val); Val is 0.
 
 tensor3IsCubic(tensor3_1) :-
-  tensor3(tensor3_1, X, Y, Z),
+  tensor3Declaration(tensor3_1, X, Y, Z),
   X == Y, Y == Z.
 
 :-
