@@ -30,7 +30,7 @@ tensor3Val(Name, X,    Y,    Z, Val) :-
   verifyIndex(X, Xmax),
   verifyIndex(Y, Ymax),
   verifyIndex(Z, Zmax),
-  tensor3( Name, X,    Y,    Z, Val); Val is 0.
+  tensor3( Name, X,    Y,    Z, Val); Val = 0.
 
 tensor3IsCubic(tensor3_1) :-
   tensor3Declaration(tensor3_1, X, Y, Z),
