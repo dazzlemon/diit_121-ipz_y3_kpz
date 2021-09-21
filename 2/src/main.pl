@@ -37,7 +37,7 @@ tensor3Val(Name, X, Y, Z, Val) :-
   processIndex(X, Xmax),
   processIndex(Y, Ymax),
   processIndex(Z, Zmax),
-  (tensor3(Name, X, Y, Z, Val); Val=0).
+  (tensor3(Name, X, Y, Z, Val); not(tensor3(Name, X, Y, Z, Val)) -> Val=0).
 
 tensor3IsCubic(tensor3_1) :-
   tensor3Declaration(tensor3_1, X, X, X).
