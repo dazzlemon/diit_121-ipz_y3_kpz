@@ -19,22 +19,37 @@ tensor3(tensor3_1, 3, 1, 3, 25).
 
 tensor3(tensor3_1, 3, 3, 3, -100).
 
-
 verifyIndex(I, IMax) :-
   is_of_type(positive_integer, I),
-  is_of_type(positive_integer, IMax),
-  I =< IMax.  
+  I =< IMax.
+
+correctTensor3Declaration(Name, X, Y, Z) :-
+  tensor3Declaration(Name, X, Y, Z),
+  is_of_type(positive_integer, X),
+  is_of_type(positive_integer, Y),
+  is_of_type(positive_integer, Z).
+
+processIndex(I, Imax) :-
+  (var(I), verifyIndex(I, Imax)); (!, between(1, Imax, I)).
 
 tensor3Val(Name, X, Y, Z, Val) :-
-  tensor3Declaration(Name, Xmax, Ymax, Zmax),
-  verifyIndex(X, Xmax),
-  verifyIndex(Y, Ymax),
-  verifyIndex(Z, Zmax),
-  tensor3(Name, X, Y, Z, Val); (Val = 0, !).
+  (correctTensor3Declaration(Name, Xmax, Ymax, Zmax); fail),
+  processIndex(X, Xmax),
+  processIndex(Y, Ymax),
+  processIndex(Z, Zmax),
+  (tensor3(Name, X, Y, Z, Val); Val=0).
 
 tensor3IsCubic(tensor3_1) :-
   tensor3Declaration(tensor3_1, X, X, X).
 
+printlist([]).
+printlist([X|List]) :-
+    writeln(X),
+    printlist(List).
+
 :-
   tensor3Val(tensor3_1, 1, 1, 1, Val), writeln('val at (1, 1, 1)' = Val),
   write('is 3x3x3 matrix cubic? - '), (tensor3IsCubic(tensor3_1), writeln(true)) ; writeln(false).
+
+:-
+  findall(X:Y:Z/V, tensor3Val(tensor3_1, X, Y, Z, V), Results), printlist(Results).
