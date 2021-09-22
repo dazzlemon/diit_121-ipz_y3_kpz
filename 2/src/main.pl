@@ -32,17 +32,18 @@ printTensor3(Name) :-
   tensor3Val(Name, X, Y, Z, V), writeln(X:Z:Y/V), fail; true.
 
 printlist([]).
-printlist([X|List]) :-
+printlist([X|Xs]) :-
     writeln(X),
-    printlist(List).
+    printlist(Xs).
 
 :-
   tensor3Val(tensor3_1, 1, 1, 1, Val), writeln('val at (1, 1, 1)' = Val),
-  write('is 3x3x3 matrix cubic? - '), (tensor3IsCubic(tensor3_1), writeln(true)) ; writeln(false).
+  nl, write('is 3x3x3 matrix cubic? - '),
+  (tensor3IsCubic(tensor3_1) -> writeln(true); writeln(false)).
 
 :-
-  findall(X:Y:Z/V, tensor3Val(tensor3_1, X, Y, Z, V), Results), printlist(Results).
+  findall(X:Y:Z/V, tensor3Val(tensor3_1, X, Y, Z, V), Results),
+  nl, printlist(Results).
 
 :- nl, printTensor3(tensor3_1).
 :- nl, min(tensor3_1, X), writeln(min=X).
-  
