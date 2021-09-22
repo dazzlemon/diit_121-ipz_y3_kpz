@@ -13,17 +13,17 @@ correctTensor3Declaration(Name, X, Y, Z) :-
 processIndex(I, Imax) :-
   nonvar(I), verifyIndex(I, Imax).
 
-tensor3Val(Name, X, Y, Z, Val) :-
-  (correctTensor3Declaration(Name, Xmax, Ymax, Zmax); fail),
-  processIndex(X, Xmax),
-  processIndex(Y, Ymax),
-  processIndex(Z, Zmax),
-  tensor3(Name, X, Y, Z, Val), !.
-tensor3Val(Name, X, Y, Z, empty) :-
-  (correctTensor3Declaration(Name, Xmax, Ymax, Zmax); fail),
+tensor3Val_(Name, X, Y, Z, Val) :-
+  correctTensor3Declaration(Name, Xmax, Ymax, Zmax),
   processIndex(X, Xmax),
   processIndex(Y, Ymax),
   processIndex(Z, Zmax).
+
+tensor3Val(Name, X, Y, Z, Val) :-
+  tensor3Val_(Name, X, Y, Z, Val),
+  tensor3(Name, X, Y, Z, Val), !.
+tensor3Val(Name, X, Y, Z, empty) :-
+  tensor3Val_(Name, X, Y, Z, _).
 
 tensor3IsCubic(tensor3_1) :-
   tensor3Declaration(tensor3_1, X, X, X).
