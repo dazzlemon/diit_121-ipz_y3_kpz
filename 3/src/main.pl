@@ -1,3 +1,13 @@
+:- dynamic university/3.% ID, President, VicePresident
+:- dynamic faculty/3.   % ID, UniversityID, Area(of specialization)
+:- dynamic department/4.% ID, FacultyID, TypeID, Discipline
+:- dynamic lab/2.       % ID, DepatmentID
+
+%             ID, Name
+departmentType(1, 'technical').
+departmentType(2, 'humanitarian').
+departmentType(3, 'special').
+
 readchar(Ch) :-
     get_char(Ch),
     get_char(_).
