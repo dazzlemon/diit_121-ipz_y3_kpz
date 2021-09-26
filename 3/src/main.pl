@@ -1,4 +1,4 @@
-:- dynamic university/3.% ID, President, VicePresident
+:- dynamic university/4.% ID, Name, President, VicePresident
 :- dynamic faculty/3.   % ID, UniversityID, Area(of specialization)
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepatmentID
@@ -8,37 +8,56 @@ departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
 departmentType(3, 'special').
 
+university(1, 'DNURT', 'Pshinko Alexander Nikolaevich', 'Bodnar Borys Yevhenovych').
+faculty(1, 1, 'TK').
+department(1, 1, 1, 'KIT').
+lab(1, 1).
+
 readchar(Ch) :-
     get_char(Ch),
     get_char(_).
 
-menuitem('0').
-menuitem('1') :-
+insert :- 
     writeln('--- INSERTING ---').
     %assert.
-menuitem('2') :-
+
+delete :-
     writeln('--- DELETING ---').
     %retract
-menuitem('3') :-
+
+loadDb :-
     consult('db.pl').
-menuitem('4') :-
+
+selectAll :- 
     %listing(),
     write('press Enter'), get_char(_).
-menuitem('5') :-
+
+commit :-
     writeln('--- COMMITTING CHANGES TO DATABASE'),
     tell('db.pl'),
     %listing(),
     told.
-menuitem('6') :-
+
+search :- 
     writeln('Choose something:'),% TODO
     read(Num),
     stud(Nm, Num, _, _),
     writeln(Nm)
     fail; true.
-menuitem('7') :-
+
+clear :-
     %retractall(),
     writeln('--- CLEARED ---').
-menuitem(X) :- writeln('You chose'=X).
+
+menuitem('0').
+menuitem('1') :- insert.
+menuitem('2') :- delete.
+menuitem('3') :- loadDb.
+menuitem('4') :- selectAll.
+menuitem('5') :- commit.
+menuitem('6') :- search.
+menuitem('7') :- clear.
+% how to add "wrong choice"
 
 menu :-
     repeat, nl,
