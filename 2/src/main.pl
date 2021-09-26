@@ -20,8 +20,8 @@ tensor3Val(Name, X, Y, Z, Val) :-
   processIndex(Z, Zmax),
   (tensor3(Name, X, Y, Z, Val) -> true; Val=empty).
 
-tensor3IsCubic(tensor3_1) :-
-  tensor3Declaration(tensor3_1, X, X, X).
+tensor3IsCubic(Name) :-
+  tensor3Declaration(Name, X, X, X).
 
 min(Name, V) :-
   tensor3(Name, _, _, _, V), not((tensor3(Name, _, _, _, V1), V1 < V)).
