@@ -1,0 +1,506 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Untitled",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFF+qBtyKM79qY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Main",
+					"defaultDiagram": true
+				},
+				{
+					"_type": "ERDDataModel",
+					"_id": "AAAAAAF8Irz8Fo7c20M=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Data Model1",
+					"ownedElements": [
+						{
+							"_type": "ERDDiagram",
+							"_id": "AAAAAAF8Irz8Fo7dmMw=",
+							"_parent": {
+								"$ref": "AAAAAAF8Irz8Fo7c20M="
+							},
+							"name": "ERDDiagram1",
+							"ownedViews": [
+								{
+									"_type": "ERDEntityView",
+									"_id": "AAAAAAF8Ir0X847jzeE=",
+									"_parent": {
+										"$ref": "AAAAAAF8Irz8Fo7dmMw="
+									},
+									"model": {
+										"$ref": "AAAAAAF8Ir0X8o7hB9o="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF8Ir0X847kWoM=",
+											"_parent": {
+												"$ref": "AAAAAAF8Ir0X847jzeE="
+											},
+											"font": "Arial;13;1",
+											"left": 624,
+											"top": 549,
+											"width": 121.7236328125,
+											"height": 13,
+											"text": "University"
+										},
+										{
+											"_type": "ERDColumnCompartmentView",
+											"_id": "AAAAAAF8Ir0X847llSE=",
+											"_parent": {
+												"$ref": "AAAAAAF8Ir0X847jzeE="
+											},
+											"model": {
+												"$ref": "AAAAAAF8Ir0X8o7hB9o="
+											},
+											"subViews": [
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IsAvVI7y+WY=",
+													"_parent": {
+														"$ref": "AAAAAAF8Ir0X847llSE="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IsAvTo7vOu8="
+													},
+													"font": "Arial;13;0",
+													"left": 629,
+													"top": 572,
+													"width": 111.7236328125,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IsBrD475M7o=",
+													"_parent": {
+														"$ref": "AAAAAAF8Ir0X847llSE="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IsBrCY72Y/s="
+													},
+													"font": "Arial;13;0",
+													"left": 629,
+													"top": 587,
+													"width": 111.7236328125,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IsEPnI8AkdQ=",
+													"_parent": {
+														"$ref": "AAAAAAF8Ir0X847llSE="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IsEPl479KsA="
+													},
+													"font": "Arial;13;0",
+													"left": 629,
+													"top": 602,
+													"width": 111.7236328125,
+													"height": 13
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 624,
+											"top": 567,
+											"width": 121.7236328125,
+											"height": 53
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 624,
+									"top": 544,
+									"width": 121.7236328125,
+									"height": 76,
+									"nameLabel": {
+										"$ref": "AAAAAAF8Ir0X847kWoM="
+									},
+									"columnCompartment": {
+										"$ref": "AAAAAAF8Ir0X847llSE="
+									}
+								}
+							]
+						},
+						{
+							"_type": "ERDEntity",
+							"_id": "AAAAAAF8Ir0X8o7hB9o=",
+							"_parent": {
+								"$ref": "AAAAAAF8Irz8Fo7c20M="
+							},
+							"name": "University",
+							"columns": [
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IsAvTo7vOu8=",
+									"_parent": {
+										"$ref": "AAAAAAF8Ir0X8o7hB9o="
+									},
+									"name": "President",
+									"length": 0
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IsBrCY72Y/s=",
+									"_parent": {
+										"$ref": "AAAAAAF8Ir0X8o7hB9o="
+									},
+									"name": "Vice President",
+									"length": 0
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IsEPl479KsA=",
+									"_parent": {
+										"$ref": "AAAAAAF8Ir0X8o7hB9o="
+									},
+									"name": "Administration",
+									"length": 0
+								}
+							]
+						}
+					]
+				},
+				{
+					"_type": "ERDDataModel",
+					"_id": "AAAAAAF8IvI9NoAhSXM=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Data Model2",
+					"ownedElements": [
+						{
+							"_type": "ERDDiagram",
+							"_id": "AAAAAAF8IvI9NoAi8tw=",
+							"_parent": {
+								"$ref": "AAAAAAF8IvI9NoAhSXM="
+							},
+							"name": "ERDDiagram1",
+							"ownedViews": [
+								{
+									"_type": "ERDEntityView",
+									"_id": "AAAAAAF8IvJO1oAoimw=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvI9NoAi8tw="
+									},
+									"model": {
+										"$ref": "AAAAAAF8IvJO1oAmYLQ="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF8IvJO1oAp77I=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvJO1oAoimw="
+											},
+											"font": "Arial;13;1",
+											"left": 648,
+											"top": 469,
+											"width": 119.3623046875,
+											"height": 13,
+											"text": "University"
+										},
+										{
+											"_type": "ERDColumnCompartmentView",
+											"_id": "AAAAAAF8IvJO1oAqgHg=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvJO1oAoimw="
+											},
+											"model": {
+												"$ref": "AAAAAAF8IvJO1oAmYLQ="
+											},
+											"subViews": [
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IvTzTIBVw8s=",
+													"_parent": {
+														"$ref": "AAAAAAF8IvJO1oAqgHg="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IvTzOIBSjew="
+													},
+													"font": "Arial;13;0",
+													"left": 653,
+													"top": 492,
+													"width": 109.3623046875,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IvUeooBcuPM=",
+													"_parent": {
+														"$ref": "AAAAAAF8IvJO1oAqgHg="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IvUenIBZhsQ="
+													},
+													"font": "Arial;13;0",
+													"left": 653,
+													"top": 507,
+													"width": 109.3623046875,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IvVBYIBjwgI=",
+													"_parent": {
+														"$ref": "AAAAAAF8IvJO1oAqgHg="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IvVBWYBgdIA="
+													},
+													"font": "Arial;13;0",
+													"left": 653,
+													"top": 522,
+													"width": 109.3623046875,
+													"height": 13
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 648,
+											"top": 487,
+											"width": 119.3623046875,
+											"height": 53
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 648,
+									"top": 464,
+									"width": 119.3623046875,
+									"height": 76,
+									"nameLabel": {
+										"$ref": "AAAAAAF8IvJO1oAp77I="
+									},
+									"columnCompartment": {
+										"$ref": "AAAAAAF8IvJO1oAqgHg="
+									}
+								},
+								{
+									"_type": "ERDEntityView",
+									"_id": "AAAAAAF8IvKNjYA22Sg=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvI9NoAi8tw="
+									},
+									"model": {
+										"$ref": "AAAAAAF8IvKNjIA0rQc="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF8IvKNjYA3epk=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvKNjYA22Sg="
+											},
+											"font": "Arial;13;1",
+											"left": 520,
+											"top": 637,
+											"width": 55.5126953125,
+											"height": 13,
+											"text": "Faculty"
+										},
+										{
+											"_type": "ERDColumnCompartmentView",
+											"_id": "AAAAAAF8IvKNjYA4bLs=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvKNjYA22Sg="
+											},
+											"model": {
+												"$ref": "AAAAAAF8IvKNjIA0rQc="
+											},
+											"font": "Arial;13;0",
+											"left": 520,
+											"top": 655,
+											"width": 55.5126953125,
+											"height": 10
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 520,
+									"top": 632,
+									"width": 55.5126953125,
+									"height": 33,
+									"nameLabel": {
+										"$ref": "AAAAAAF8IvKNjYA3epk="
+									},
+									"columnCompartment": {
+										"$ref": "AAAAAAF8IvKNjYA4bLs="
+									}
+								},
+								{
+									"_type": "ERDEntityView",
+									"_id": "AAAAAAF8IvPNwYBDv38=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvI9NoAi8tw="
+									},
+									"model": {
+										"$ref": "AAAAAAF8IvPNwYBBnEA="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF8IvPNwoBEGrA=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvPNwYBDv38="
+											},
+											"font": "Arial;13;1",
+											"left": 608,
+											"top": 637,
+											"width": 91.4072265625,
+											"height": 13,
+											"text": "Department"
+										},
+										{
+											"_type": "ERDColumnCompartmentView",
+											"_id": "AAAAAAF8IvPNwoBFahU=",
+											"_parent": {
+												"$ref": "AAAAAAF8IvPNwYBDv38="
+											},
+											"model": {
+												"$ref": "AAAAAAF8IvPNwYBBnEA="
+											},
+											"subViews": [
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IvdlWYBtVn4=",
+													"_parent": {
+														"$ref": "AAAAAAF8IvPNwoBFahU="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IvdlUoBq1+s="
+													},
+													"font": "Arial;13;0",
+													"left": 613,
+													"top": 660,
+													"width": 81.4072265625,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAF8IvfMZ4B0ka8=",
+													"_parent": {
+														"$ref": "AAAAAAF8IvPNwoBFahU="
+													},
+													"model": {
+														"$ref": "AAAAAAF8IvfMYIBx1Ss="
+													},
+													"font": "Arial;13;0",
+													"left": 613,
+													"top": 675,
+													"width": 81.4072265625,
+													"height": 13
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 608,
+											"top": 655,
+											"width": 91.4072265625,
+											"height": 38
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 608,
+									"top": 632,
+									"width": 91.4072265625,
+									"height": 61,
+									"nameLabel": {
+										"$ref": "AAAAAAF8IvPNwoBEGrA="
+									},
+									"columnCompartment": {
+										"$ref": "AAAAAAF8IvPNwoBFahU="
+									}
+								}
+							]
+						},
+						{
+							"_type": "ERDEntity",
+							"_id": "AAAAAAF8IvJO1oAmYLQ=",
+							"_parent": {
+								"$ref": "AAAAAAF8IvI9NoAhSXM="
+							},
+							"name": "University",
+							"columns": [
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IvTzOIBSjew=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvJO1oAmYLQ="
+									},
+									"name": "President",
+									"length": 0
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IvUenIBZhsQ=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvJO1oAmYLQ="
+									},
+									"name": "Vice President",
+									"length": 0
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IvVBWYBgdIA=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvJO1oAmYLQ="
+									},
+									"name": "ID",
+									"length": 0
+								}
+							]
+						},
+						{
+							"_type": "ERDEntity",
+							"_id": "AAAAAAF8IvKNjIA0rQc=",
+							"_parent": {
+								"$ref": "AAAAAAF8IvI9NoAhSXM="
+							},
+							"name": "Faculty"
+						},
+						{
+							"_type": "ERDEntity",
+							"_id": "AAAAAAF8IvPNwYBBnEA=",
+							"_parent": {
+								"$ref": "AAAAAAF8IvI9NoAhSXM="
+							},
+							"name": "Department",
+							"columns": [
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IvdlUoBq1+s=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvPNwYBBnEA="
+									},
+									"name": "Discipline",
+									"length": 0
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAF8IvfMYIBx1Ss=",
+									"_parent": {
+										"$ref": "AAAAAAF8IvPNwYBBnEA="
+									},
+									"name": "FacultyID",
+									"length": 0
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
