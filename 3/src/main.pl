@@ -3,6 +3,8 @@
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepartmentID
 
+:- ensure_loaded('select_all.pl').
+
 %             ID, Name
 departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
@@ -14,18 +16,12 @@ faculty(1, 1, 'TK').
 department(1, 1, 1, 'KIT').
 lab(1, 1).
 
-readchar(Ch) :-
-    get_char(Ch),
-    get_char(_).
-
 insert :- 
     writeln('--- INSERTING ---'),
     writeln('What do you want to insert?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),
     readchar(Nm),
-    writeln(Nm),
     insert(Nm).
-
 
 insert('1') :-% insert university
     write('Input UniversityName: '), read(UniversityName),
@@ -62,16 +58,6 @@ delete :-
 
 loadDb :-
     consult('db.pl').
-
-writeUniversitySeparator :-
-    writef('|%r|%r|%r|%r|\n', ['-', 5, '-', 20, '-', 40, '-', 40]).
-selectAll :-
-    writef(' %r\n', ['-', 108]),
-    writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
-    university(ID, Name, President, VP),
-    writeUniversitySeparator,
-    writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
-    fail; writef(' %r\n', ['-', 108]).
 
 commit :-
     writeln('--- COMMITTING CHANGES TO DATABASE'),
