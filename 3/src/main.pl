@@ -66,18 +66,12 @@ loadDb :-
 writeUniversitySeparator :-
     writef('|%r|%r|%r|%r|\n', ['-', 5, '-', 20, '-', 40, '-', 40]).
 selectAll :-
-    %writeUniversitySeparator,
     writef(' %r\n', ['-', 108]),
     writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
-    %writeUniversitySeparator,
     university(ID, Name, President, VP),
     writeUniversitySeparator,
     writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
-    % writeUniversitySeparator,
-    % fail; true.
     fail; writef(' %r\n', ['-', 108]).
-    %listing(university),
-    %write('press Enter'), get_char(_).
 
 commit :-
     writeln('--- COMMITTING CHANGES TO DATABASE'),
