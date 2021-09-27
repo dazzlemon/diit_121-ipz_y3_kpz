@@ -3,6 +3,8 @@
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepartmentID
 
+:- ensure_loaded('readchar.pl').
+
 selectAll :-
     writeln('--- TABLE LISTING ---'),
     writeln('Which table do you want to see?'),
@@ -32,7 +34,3 @@ writeUniversitySeparator :-
     writef('|%r|%r|%r|%r|\n', ['-', 5, '-', 20, '-', 40, '-', 40]).
 writeFacultySeparator :-
     writef('|%r|%r|%r|\n', ['-', 5, '-', 15, '-', 20]).
-
-readchar(Ch) :-
-    get_char(Ch),
-    get_char(_).
