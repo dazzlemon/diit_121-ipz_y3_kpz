@@ -9,6 +9,7 @@ departmentType(2, 'humanitarian').
 departmentType(3, 'special').
 
 university(1, 'DNURT', 'Pshinko Alexander Nikolaevich', 'Bodnar Borys Yevhenovych').
+university(2, 'test', test, test).
 faculty(1, 1, 'TK').
 department(1, 1, 1, 'KIT').
 lab(1, 1).
@@ -62,9 +63,21 @@ delete :-
 loadDb :-
     consult('db.pl').
 
-selectAll :- 
-    %listing(),
-    write('press Enter'), get_char(_).
+writeUniversitySeparator :-
+    writef('|%r|%r|%r|%r|\n', ['-', 5, '-', 20, '-', 40, '-', 40]).
+selectAll :-
+    %writeUniversitySeparator,
+    writef(' %r\n', ['-', 108]),
+    writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
+    %writeUniversitySeparator,
+    university(ID, Name, President, VP),
+    writeUniversitySeparator,
+    writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
+    % writeUniversitySeparator,
+    % fail; true.
+    fail; writef(' %r\n', ['-', 108]).
+    %listing(university),
+    %write('press Enter'), get_char(_).
 
 commit :-
     writeln('--- COMMITTING CHANGES TO DATABASE'),
