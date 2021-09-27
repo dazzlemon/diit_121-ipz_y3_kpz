@@ -15,14 +15,14 @@ selectAll('1') :-% list all universities
     writef(' %r\n', ['-', 108]),
     writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
     university(ID, Name, President, VP),
-    writeUniversitySeparator,
+    writeSeparator([5, 20, 40, 40]),
     writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
     fail; writef(' %r\n', ['-', 108]).
 selectAll('2') :-% list all faculties
     writef(' %r\n', ['-', 42]),
     writef('|%5C|%15C|%20C|\n', ['ID', 'UniversityID', 'Name']),
     faculty(ID, UniversityID, Name),
-    writeFacultySeparator,
+    writeSeparator([5, 15, 20]),
     writef('|%5C|%15C|%20C|\n', [ID, UniversityID, Name]),
     fail; writef(' %r\n', ['-', 42]).
 selectAll('3') :-% list all departments
@@ -30,7 +30,8 @@ selectAll('3') :-% list all departments
 selectAll('4') :-%list all labs
     true.% TODO
 
-writeUniversitySeparator :-
-    writef('|%r|%r|%r|%r|\n', ['-', 5, '-', 20, '-', 40, '-', 40]).
-writeFacultySeparator :-
-    writef('|%r|%r|%r|\n', ['-', 5, '-', 15, '-', 20]).
+writeSeparator([]) :-
+    writeln('|').
+writeSeparator([X|Xs]) :-
+    writef('|%r', ['-', X]),
+    writeSeparator(Xs).
