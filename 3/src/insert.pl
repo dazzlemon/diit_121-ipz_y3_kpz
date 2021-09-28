@@ -38,15 +38,11 @@ naturalNum(N) :-
     N is N_ + 1,
     writeln(N).
 
-findFreeId(university, _, ID) :-
-    naturalNum(ID),
-    not(university(ID, _, _, _)), !.
-%ArgSize doesn't take ID into accout, ID is first arg, only pass var ID
 findFreeId(Predicate, ArgSize, ID) :-
     naturalNum(ID),
     length(ArgList, ArgSize),
     append([ID], ArgList, ArgList_),
-    not(apply(Predicate, ArgList_)).
+    not(apply(Predicate, ArgList_)), !.
 
 % Xs - ArgNameList, Ys- ArgList
 readArgs([], []).
