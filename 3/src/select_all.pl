@@ -40,15 +40,20 @@ selectAll('4') :-%list all labs
     true.% TODO
 
 selectAll(Predicate, PredicateArgList, ColumnNameList, ColumnSizeList) :-
-    sumList(ColumnSizeList, TotalWidth_),
-    length(ColumnSizeList, NColumns), 
-    TotalWidth is TotalWidth_ + NColumns - 1,% first char is space
+    writeStartEndSeparator(ColumnSizeList, TotalWidth),
     writef(' %r\n', ['-', TotalWidth]),
     writeRow(ColumnNameList, ColumnSizeList),
     apply(Predicate, PredicateArgList),
     writeSeparator(ColumnSizeList),
     writeRow(PredicateArgList, ColumnSizeList),
-    fail; writef(' %r\n', ['-', TotalWidth]).
+    fail; writeStartEndSeparator(ColumnSizeList, TotalWidth).
+    % length calculation separate, because when backtracked TotalWidth is free var
+
+writeStartEndSeparator(ColumnSizeList, TotalWidth) :-
+    sumList(ColumnSizeList, TotalWidth_),
+    length(ColumnSizeList, NColumns), 
+    TotalWidth is TotalWidth_ + NColumns - 1,% first char is space
+    writef(' %r\n', ['-', TotalWidth]).
 
 % Xs - ColumnValues, Ys - ColumnSizes, len(Xs) = len(Ys)
 writeRow([], []) :-
