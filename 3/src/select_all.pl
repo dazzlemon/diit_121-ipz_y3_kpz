@@ -12,18 +12,24 @@ selectAll :-
     readchar(Nm),
     selectAll(Nm).
 selectAll('1') :-% list all universities
-    writef(' %r\n', ['-', 108]),
-    %writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
-    writeHeader(
+    % writef(' %r\n', ['-', 108]),
+    % writeHeader(
+    %     ['ID', 'Name', 'President', 'VP'],
+    %     [   5,     20,          40,   40]),
+    % university(ID, Name, President, VP),
+    % writeSeparator([5, 20, 40, 40]),
+    % writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
+    % fail; writef(' %r\n', ['-', 108]).
+    selectAll(
+        university,
+        [ ID,   Name,   President,   VP],
         ['ID', 'Name', 'President', 'VP'],
-        [   5,     20,          40,   40]),
-    university(ID, Name, President, VP),
-    writeSeparator([5, 20, 40, 40]),
-    writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
-    fail; writef(' %r\n', ['-', 108]).
+        [   5,     20,          40,   40]).
 selectAll('2') :-% list all faculties
     writef(' %r\n', ['-', 42]),
-    writef('|%5C|%15C|%20C|\n', ['ID', 'UniversityID', 'Name']),
+    writeRow(
+        ['ID', 'UniversityID', 'Name'],
+        [   5,             15,     20]),
     faculty(ID, UniversityID, Name),
     writeSeparator([5, 15, 20]),
     writef('|%5C|%15C|%20C|\n', [ID, UniversityID, Name]),
@@ -34,17 +40,23 @@ selectAll('4') :-%list all labs
     true.% TODO
 
 selectAll(Predicate, PredicateArgList, ColumnNameList, ColumnSizeList) :-
-    sumList(ColumnSizes, TotalWidth),
-    TotalWidth is TotalWidth - 1.% first char is space
-    % TODO
+    sumList(ColumnSizeList, TotalWidth_),
+    length(ColumnSizeList, NColumns), 
+    TotalWidth is TotalWidth_ + NColumns - 1,% first char is space
+    writef(' %r\n', ['-', TotalWidth]),
+    writeRow(ColumnNameList, ColumnSizeList),
+    apply(Predicate, PredicateArgList),
+    writeSeparator(ColumnSizeList),
+    writeRow(PredicateArgList, ColumnSizeList),
+    fail; writef(' %r\n', ['-', TotalWidth]).
 
-% Xs - ColumnNameList, Ys - ColumnSizeList, len(Xs) = len(Ys)
-writeHeader([], []) :-
+% Xs - ColumnValues, Ys - ColumnSizes, len(Xs) = len(Ys)
+writeRow([], []) :-
     writeln('|').
-writeHeader([X|Xs], [Y|Ys]) :-
+writeRow([X|Xs], [Y|Ys]) :-
     format(atom(Format), '|%~dC', Y),
     writef(Format, [X]),
-    writeHeader(Xs, Ys).
+    writeRow(Xs, Ys).
 
 sumList([], 0).
 sumList([X|Xs], Sum) :-
