@@ -37,14 +37,14 @@ clear :-
     %retractall(),
     writeln('--- CLEARED ---').
 
-menuitem('0').
-menuitem('1') :- insert.
-menuitem('2') :- delete.
-menuitem('3') :- loadDb.
-menuitem('4') :- selectAll.
-menuitem('5') :- commit.
-menuitem('6') :- search.
-menuitem('7') :- clear.
+menuitem(0).
+menuitem(1) :- insert.
+menuitem(2) :- delete.
+menuitem(3) :- loadDb.
+menuitem(4) :- selectAll.
+menuitem(5) :- commit.
+menuitem(6) :- search.
+menuitem(7) :- clear.
 % how to add "wrong choice"(without using if else if ... else)
 
 menu :-
@@ -57,5 +57,5 @@ menu :-
     writeln('6. Search'),
     writeln('7. Clear database'),
     writeln('0. Exit'),
-    writeln('?>'), readchar(Num), menuitem(Num), Num='0'.
+    writeln('?>'), read(Num), menuitem(Num), Num=0.
 :- menu.
