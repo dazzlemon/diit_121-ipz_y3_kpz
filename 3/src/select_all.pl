@@ -3,14 +3,11 @@
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepartmentID
 
-%:- ensure_loaded('readchar.pl').
-
 selectAll :-
     writeln('--- TABLE LISTING ---'),
     writeln('Which table do you want to see?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),
     read(Nm),
-    %readchar(Nm),
     selectAll(Nm).
 selectAll(1) :- selectAll(% list all universities
     university,
