@@ -13,12 +13,10 @@ selectAll :-
     selectAll(Nm).
 selectAll('1') :- selectAll(% list all universities
     university,
-    [ ID,   Name,   President,   VP],
     ['ID', 'Name', 'President', 'VP'],
     [   5,     20,          40,   40]).
 selectAll('2') :- selectAll(% list all faculties
     faculty,
-    [ ID,   UniversityID,   Name],
     ['ID', 'UniversityID', 'Name'],
     [   5,             15,     20]).
 selectAll('3') :-% list all departments
@@ -26,16 +24,19 @@ selectAll('3') :-% list all departments
 selectAll('4') :-%list all labs
     true.% TODO
 
-selectAll(Predicate, PredicateArgList, ColumnNameList, ColumnSizeList) :-
-    writeStartEndSeparator(ColumnSizeList, TotalWidth),
+% predicate arity has to be equal to length of both lists
+selectAll(Predicate, ColumnNameList, ColumnSizeList) :-
+    writeStartEndSeparator(ColumnSizeList),
     writeRow(ColumnNameList, ColumnSizeList),
+    length(ColumnNameList, NColumns),
+    length(PredicateArgList, NColumns),% Predicate ArgList is now list of free vars
     apply(Predicate, PredicateArgList),
     writeSeparator(ColumnSizeList),
     writeRow(PredicateArgList, ColumnSizeList),
-    fail; writeStartEndSeparator(ColumnSizeList, TotalWidth).
+    fail; writeStartEndSeparator(ColumnSizeList).
     % length calculation separate, because when backtracked TotalWidth is free var
 
-writeStartEndSeparator(ColumnSizeList, TotalWidth) :-
+writeStartEndSeparator(ColumnSizeList) :-
     sumList(ColumnSizeList, TotalWidth_),
     length(ColumnSizeList, NColumns), 
     TotalWidth is TotalWidth_ + NColumns - 1,% first char is space
