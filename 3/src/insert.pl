@@ -30,10 +30,24 @@ insert(Predicate, ArgNameList) :-
     readArgs(ArgNameList, ArgList),
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
-    assertz(apply(Predicate, ArgList_)).
-    % tell('db.pl'),
-    % listing(Predicate),
-    % told.
+    assertzWithArgs(Predicate, ArgList_),
+    updateDb.
+
+assertzWithArgs(Predicate, ArgList_) :-
+    length(ArgList_, N_),
+    N is N_ - 1,
+    swritef(Format, '%w(%r%w).', [Predicate, '%w, ', N]),
+    swritef(String, Format, ArgList_),
+    term_string(Term, String),
+    assertz(Term).
+
+updateDb :-
+    tell('db.pl'),
+    listing(university),
+    listing(faculty),
+    listing(department),
+    listing(lab),
+    told.
 
 naturalNum(1).
 naturalNum(N) :-
