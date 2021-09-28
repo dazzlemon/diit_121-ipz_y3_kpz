@@ -3,19 +3,19 @@
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepartmentID
 
+:- multifile university/4.
+:- multifile faculty/3.
+:- multifile department/4.
+:- multifile lab/2.
+
 :- ensure_loaded('select_all.pl').
 :- ensure_loaded('insert.pl').
+:- ensure_loaded('db.pl').
 
 %             ID, Name
 departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
 departmentType(3, 'special').
-
-university(1, 'DNURT', 'Pshinko Alexander Nikolaevich', 'Bodnar Borys Yevhenovych').
-university(2, 'test', test, test).
-faculty(1, 1, 'TK').
-department(1, 1, 1, 'KIT').
-lab(1, 1).
 
 delete :-
     writeln('--- DELETING ---').

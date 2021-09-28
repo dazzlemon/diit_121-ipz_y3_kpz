@@ -4,6 +4,7 @@
 :- dynamic lab/2.       % ID, DepartmentID
 
 selectAll :-
+    consult('db.pl'),
     writeln('--- TABLE LISTING ---'),
     writeln('Which table do you want to see?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),

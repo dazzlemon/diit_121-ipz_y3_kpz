@@ -31,6 +31,9 @@ insert(Predicate, ArgNameList) :-
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
     assertz(apply(Predicate, ArgList_)).
+    % tell('db.pl'),
+    % listing(Predicate),
+    % told.
 
 naturalNum(1).
 naturalNum(N) :-
@@ -38,6 +41,7 @@ naturalNum(N) :-
     N is N_ + 1,
     writeln(N).
 
+% ArgSize doesn't count ID, ID is first arg
 findFreeId(Predicate, ArgSize, ID) :-
     naturalNum(ID),
     length(ArgList, ArgSize),
