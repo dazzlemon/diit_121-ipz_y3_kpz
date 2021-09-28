@@ -13,7 +13,10 @@ selectAll :-
     selectAll(Nm).
 selectAll('1') :-% list all universities
     writef(' %r\n', ['-', 108]),
-    writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
+    %writef('|%5C|%20C|%40C|%40C|\n', ['ID', 'Name', 'President', 'VP']),
+    writeHeader(
+        ['ID', 'Name', 'President', 'VP'],
+        [   5,     20,          40,   40]),
     university(ID, Name, President, VP),
     writeSeparator([5, 20, 40, 40]),
     writef('|%5C|%20C|%40C|%40C|\n', [ID, Name, President, VP]),
@@ -29,6 +32,24 @@ selectAll('3') :-% list all departments
     true.% TODO
 selectAll('4') :-%list all labs
     true.% TODO
+
+selectAll(Predicate, PredicateArgList, ColumnNameList, ColumnSizeList) :-
+    sumList(ColumnSizes, TotalWidth),
+    TotalWidth is TotalWidth - 1.% first char is space
+    % TODO
+
+% Xs - ColumnNameList, Ys - ColumnSizeList, len(Xs) = len(Ys)
+writeHeader([], []) :-
+    writeln('|').
+writeHeader([X|Xs], [Y|Ys]) :-
+    format(atom(Format), '|%~dC', Y),
+    writef(Format, [X]),
+    writeHeader(Xs, Ys).
+
+sumList([], 0).
+sumList([X|Xs], Sum) :-
+    sumList(Xs, Sum_),
+    Sum is X + Sum_.
 
 writeSeparator([]) :-
     writeln('|').
