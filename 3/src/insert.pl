@@ -30,7 +30,7 @@ insert(Predicate, ArgNameList) :-
     readArgs(ArgNameList, ArgList),
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
-    assert(apply(Predicate, ArgList_)).
+    assertz(apply(Predicate, ArgList_)).
 
 naturalNum(1).
 naturalNum(N) :-
@@ -41,18 +41,12 @@ naturalNum(N) :-
 findFreeId(university, _, ID) :-
     naturalNum(ID),
     not(university(ID, _, _, _)), !.
-% ArgSize doesn't take ID into accout, ID is first arg, only pass var ID
-% findFreeId(Predicate, ArgSize, ID) :-
-%     var(ID) -> ID is 1,
-%     %length(ArgList, ArgSize),
-%     ArgList=[_, _, _],
-%     append([ID], ArgList, ArgList_),
-%     writeln('ID' = ID),
-%     writeln(ArgList_),
-%     writeln(apply(Predicate, ArgList_)),
-%     apply(Predicate, ArgList_) -> (
-%         ID1 is ID + 1,
-%         findFreeId(Predicate, ArgSize, ID1)).
+%ArgSize doesn't take ID into accout, ID is first arg, only pass var ID
+findFreeId(Predicate, ArgSize, ID) :-
+    naturalNum(ID),
+    length(ArgList, ArgSize),
+    append([ID], ArgList, ArgList_),
+    not(apply(Predicate, ArgList_)).
 
 % Xs - ArgNameList, Ys- ArgList
 readArgs([], []).
