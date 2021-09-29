@@ -3,6 +3,11 @@
 :- dynamic department/4.% ID, FacultyID, TypeID, Discipline
 :- dynamic lab/2.       % ID, DepartmentID
 
+:- multifile university/4.
+:- multifile faculty/3.
+:- multifile department/4.
+:- multifile lab/2.
+
 insert :- 
     writeln('--- INSERTING ---'),
     writeln('What do you want to insert?'),
@@ -52,8 +57,7 @@ updateDb :-
 naturalNum(1).
 naturalNum(N) :-
     naturalNum(N_),
-    N is N_ + 1,
-    writeln(N).
+    N is N_ + 1.
 
 % ArgSize doesn't count ID, ID is first arg
 findFreeId(Predicate, ArgSize, ID) :-

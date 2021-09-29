@@ -10,37 +10,44 @@
 
 :- ensure_loaded('table_print.pl').
 
-selectAll :-
-    writeln('--- TABLE LISTING ---'),
-    writeln('Which table do you want to see?'),
+search_ :-
+    writeln('--- SEARCHING ---'),
+    writeln('What do you want to search?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),
     read(Nm),
-    selectAll(Nm).
-selectAll(1) :- selectAll(% list all universities
+    search_(Nm).
+
+search_(1) :- search_(
     university,
     ['ID', 'Name', 'President', 'VP'],
     [   5,     20,          40,   40]).
-selectAll(2) :- selectAll(% list all faculties
+search_(2) :- search_(
     faculty,
     ['ID', 'UniversityID', 'Name'],
     [   5,             15,     20]).
-selectAll(3) :- selectAll(% list all departments
+search_(3) :- search_(
     department,
     ['ID', 'FacultyID', 'TypeID', 'Discipline'],
     [   5,          15,       10,           30]).
-selectAll(4) :- selectAll(%list all labs
+search_(4) :- search_(
     lab,
     ['ID', 'DepartmentID'],
     [   5,             15]).
 
-% predicate arity has to be equal to length of both lists
-selectAll(Predicate, ColumnNameList, ColumnSizeList) :-
+search_(Predicate, ArgNameList, ColumnSizeList) :-
+    maplist(question, ArgNameList, Answers),
+    maplist(searchFilter, Answers, Args),
     writeStartEndSeparator(ColumnSizeList),
-    writeRow(ColumnNameList, ColumnSizeList),
-    length(ColumnNameList, NColumns),
-    length(PredicateArgList, NColumns),% Predicate ArgList is now list of free vars
-    apply(Predicate, PredicateArgList),
+    writeRow(ArgNameList, ColumnSizeList),
+    apply(Predicate, Args),
     writeSeparator(ColumnSizeList),
-    writeRow(PredicateArgList, ColumnSizeList),
+    writeRow(Args, ColumnSizeList),
     fail; writeStartEndSeparator(ColumnSizeList).
-    % length calculation separate, because when backtracked TotalWidth is free var
+
+question(ArgName, Ans) :-
+    writef('Do you want to filter by %w?\n', [ArgName]),
+    writeln('If yes input Value to filter by, otherwise input"-":'),
+    read(Ans).
+
+searchFilter(Answer, Arg) :-
+    Answer = '-' -> true; Arg = Answer. 

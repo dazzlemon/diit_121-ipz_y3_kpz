@@ -11,28 +11,30 @@
 :- ensure_loaded('select_all.pl').
 :- ensure_loaded('insert.pl').
 :- ensure_loaded('db.pl').
+:- ensure_loaded('search.pl').
 
 %             ID, Name
 departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
 departmentType(3, 'special').
 
-delete :-
-    writeln('--- DELETING ---').
-    %retract
 
 search :- 
     writeln('Choose something:').% TODO
 
-clear :-
-    %retractall(),
+clear :-% doesn't work properly idk why
+    retractall(university),
+    retractall(faculty),
+    retractall(department),
+    retractall(lab),
+    updateDb,
     writeln('--- CLEARED ---').
 
 menuitem(0).
 menuitem(1) :- insert.
 menuitem(2) :- delete.
 menuitem(3) :- selectAll.
-menuitem(4) :- search.
+menuitem(4) :- search_.
 menuitem(5) :- clear.
 % how to add "wrong choice"(without using if else if ... else)
 
