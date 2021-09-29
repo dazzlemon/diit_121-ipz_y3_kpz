@@ -21,15 +21,6 @@ delete :-
     writeln('--- DELETING ---').
     %retract
 
-loadDb :-
-    consult('db.pl').
-
-commit :-
-    writeln('--- COMMITTING CHANGES TO DATABASE'),
-    tell('db.pl'),
-    %listing(),
-    told.
-
 search :- 
     writeln('Choose something:').% TODO
 
@@ -40,22 +31,18 @@ clear :-
 menuitem(0).
 menuitem(1) :- insert.
 menuitem(2) :- delete.
-menuitem(3) :- loadDb.
-menuitem(4) :- selectAll.
-menuitem(5) :- commit.
-menuitem(6) :- search.
-menuitem(7) :- clear.
+menuitem(3) :- selectAll.
+menuitem(4) :- search.
+menuitem(5) :- clear.
 % how to add "wrong choice"(without using if else if ... else)
 
 menu :-
     repeat, nl,
     writeln('1. INSERT'),
     writeln('2. DELETE'),
-    writeln('3. Load database'),
-    writeln('4. SELECT *'),
-    writeln('5. COMMIT'),
-    writeln('6. Search'),
-    writeln('7. Clear database'),
+    writeln('3. SELECT *'),
+    writeln('4. Search'),
+    writeln('5. Clear database'),
     writeln('0. Exit'),
     writeln('?>'), read(Num), menuitem(Num), Num=0.
 :- menu.
