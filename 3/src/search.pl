@@ -9,30 +9,15 @@
 :- multifile lab/2.
 
 :- ensure_loaded('table_print.pl').
+:- ensure_loaded('args_for_table_manip.pl').
 
 search_ :-
     writeln('--- SEARCHING ---'),
     writeln('What do you want to search?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),
     read(Nm),
-    search_(Nm).
-
-search_(1) :- search_(
-    university,
-    ['ID', 'Name', 'President', 'VP'],
-    [   5,     20,          40,   40]).
-search_(2) :- search_(
-    faculty,
-    ['ID', 'UniversityID', 'Name'],
-    [   5,             15,     20]).
-search_(3) :- search_(
-    department,
-    ['ID', 'FacultyID', 'TypeID', 'Discipline'],
-    [   5,          15,       10,           30]).
-search_(4) :- search_(
-    lab,
-    ['ID', 'DepartmentID'],
-    [   5,             15]).
+    argsForTableManip(Nm, Predicate, ColumnNames, ColumnSizes, _),
+    search_(Predicate, ColumnNames, ColumnSizes).
 
 search_(Predicate, ArgNameList, ColumnSizeList) :-
     maplist(question, ArgNameList, Answers),
