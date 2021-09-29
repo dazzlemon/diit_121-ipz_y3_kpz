@@ -2,20 +2,18 @@
 :- ensure_loaded('insert.pl').
 :- ensure_loaded('db.pl').
 :- ensure_loaded('search.pl').
+:- ensure_loaded('args_for_table_manip.pl').
 
 %             ID, Name
 departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
 departmentType(3, 'special').
 
-search :- 
-    writeln('Choose something:').% TODO
-
 clear :-% doesn't work properly idk why
-    retractall(university),
-    retractall(faculty),
-    retractall(department),
-    retractall(lab),
+    retractall(university(_, _, _, _)),
+    retractall(faculty(_, _, _)),
+    retractall(department(_, _, _, _)),
+    retractall(lab(_, _)),
     updateDb,
     writeln('--- CLEARED ---').
 
