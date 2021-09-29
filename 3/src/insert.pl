@@ -11,7 +11,8 @@ insert :-
 insert(Predicate, ArgNameList) :-
     length(ArgNameList, N),
     length(ArgList, N),
-    readArgs(ArgNameList, ArgList),
+    pairs_keys_values(ArgPairs, ArgNameList, ArgList),
+    readArgs(ArgPairs),
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
     assertzWithArgs(Predicate, ArgList_),
@@ -46,7 +47,7 @@ findFreeId(Predicate, ArgSize, ID) :-
     not(apply(Predicate, ArgList_)), !.
 
 % Xs - ArgNameList, Ys- ArgList
-readArgs([], []).
-readArgs([X|Xs], [Y|Ys]) :-
+readArgs([]).
+readArgs([X-Y|XYs]) :-
     writef('Input %w: ', [X]), read(Y),
-    readArgs(Xs, Ys).
+    readArgs(XYs).
