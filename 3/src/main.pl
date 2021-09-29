@@ -18,7 +18,6 @@ departmentType(1, 'technical').
 departmentType(2, 'humanitarian').
 departmentType(3, 'special').
 
-
 search :- 
     writeln('Choose something:').% TODO
 
