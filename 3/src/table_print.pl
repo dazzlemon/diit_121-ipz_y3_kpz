@@ -1,5 +1,5 @@
 writeStartEndSeparator(ColumnSizeList) :-
-    sumList(ColumnSizeList, TotalWidth_),
+    foldl(plus, ColumnSizeList, 0, TotalWidth_),
     length(ColumnSizeList, NColumns), 
     TotalWidth is TotalWidth_ + NColumns - 1,% first char is space
     writef(' %r\n', ['-', TotalWidth]).
@@ -17,8 +17,3 @@ writeSeparator([]) :-
 writeSeparator([X|Xs]) :-
     writef('|%r', ['-', X]),
     writeSeparator(Xs).
-
-sumList([], 0).
-sumList([X|Xs], Sum) :-
-    sumList(Xs, Sum_),
-    Sum is X + Sum_.
