@@ -7,10 +7,10 @@ writeStartEndSeparator(ColumnSizeList) :-
 % Xs - ColumnValues, Ys - ColumnSizes, len(Xs) = len(Ys)
 writeRow(Xs, Ys) :-
     pairs_keys_values(XYs, Xs, Ys),
-    maplist(writeCell, XYs), writeln('|').
-writeCell(X-Y) :-
-    format(atom(Format), '|%~dC', Y),
-    writef(Format, [X]).
+    maplist([X-Y]>>(
+        format(atom(Format), '|%~dC', Y),
+        writef(Format, [X])
+    ), XYs), writeln('|').
 
 writeSeparator(Xs) :-
     maplist([X]>>writef('|%r', ['-', X]), Xs), writeln('|').
