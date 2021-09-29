@@ -8,26 +8,15 @@
 :- multifile department/4.
 :- multifile lab/2.
 
+:- ensure_loaded('args_for_table_manip.pl').
+
 insert :- 
     writeln('--- INSERTING ---'),
     writeln('What do you want to insert?'),
     write('(1 - university, 2 - faculty, 3 - department, 4 - lab): '),
     read(Nm),
-    insert(Nm).
-
-insert(1) :- insert(% insert university
-    university,
-    ['UniversityName', 'UniversityPresident', 'UniversityVicePresident']).
-insert(2) :- insert(% insert faculty
-    faculty,
-    ['UniversityID', 'Area(of specialization)']).
-insert(3) :- insert(% insert department
-    department,
-    ['FacultyID',
-    'Type\n(1 - technical, 2 - humanitarian, 3 - special)',
-    'Discipline']).
-insert(4) :- insert(% insert lab
-    lab, ['DepartmentID']).
+    argsForTableManip(Nm, Predicate, _, _, Prompts),
+    insert(Predicate, Prompts).
 
 insert(Predicate, ArgNameList) :-
     length(ArgNameList, N),
