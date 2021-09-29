@@ -5,12 +5,12 @@ writeStartEndSeparator(ColumnSizeList) :-
     writef(' %r\n', ['-', TotalWidth]).
 
 % Xs - ColumnValues, Ys - ColumnSizes, len(Xs) = len(Ys)
-writeRow([], []) :-
-    writeln('|').
-writeRow([X|Xs], [Y|Ys]) :-
+writeRow(Xs, Ys) :-
+    pairs_keys_values(XYs, Xs, Ys),
+    maplist(writeCell, XYs), writeln('|').
+writeCell(X-Y) :-
     format(atom(Format), '|%~dC', Y),
-    writef(Format, [X]),
-    writeRow(Xs, Ys).
+    writef(Format, [X]).
 
 writeSeparator(Xs) :-
     maplist(writeSep, Xs), writeln('|').
