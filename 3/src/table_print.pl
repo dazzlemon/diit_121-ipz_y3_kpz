@@ -13,4 +13,4 @@ writeCell(X-Y) :-
     writef(Format, [X]).
 
 writeSeparator(Xs) :-
-    maplist({}/[X]>>writef('|%r', ['-', X]), Xs), writeln('|').
+    maplist([X]>>writef('|%r', ['-', X]), Xs), writeln('|').
