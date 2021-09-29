@@ -12,8 +12,7 @@ writeRow([X|Xs], [Y|Ys]) :-
     writef(Format, [X]),
     writeRow(Xs, Ys).
 
-writeSeparator([]) :-
-    writeln('|').
-writeSeparator([X|Xs]) :-
-    writef('|%r', ['-', X]),
-    writeSeparator(Xs).
+writeSeparator(Xs) :-
+    maplist(writeSep, Xs), writeln('|').
+writeSep(X) :-
+    writef('|%r', ['-', X]).
