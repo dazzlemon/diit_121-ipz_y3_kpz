@@ -1,3 +1,13 @@
+:- dynamic university/4.% ID, Name, President, VicePresident
+:- dynamic faculty/3.   % ID, UniversityID, Area(of specialization)
+:- dynamic department/4.% ID, FacultyID, TypeID, Discipline
+:- dynamic lab/2.       % ID, DepartmentID
+
+:- multifile university/4.
+:- multifile faculty/3.
+:- multifile department/4.
+:- multifile lab/2.
+
 % id, table, columns, columnSizes, prompts
 argsForTableManip(
     1, university,
