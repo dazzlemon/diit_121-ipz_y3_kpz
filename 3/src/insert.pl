@@ -10,9 +10,9 @@ insert :-
 
 insert(Predicate, ArgNameList) :-
     length(ArgNameList, N),
-    length(ArgList, N),
-    pairs_keys_values(ArgPairs, ArgNameList, ArgList),
-    maplist(readArg, ArgPairs),
+    length(ArgList, N),% list of empty vars
+    pairs_keys_values(ArgPairs, ArgNameList, ArgList),% list of name-empty var pairs
+    maplist(readArg, ArgPairs),% read to free vars
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
     assertzWithArgs(Predicate, ArgList_),

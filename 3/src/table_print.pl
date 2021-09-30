@@ -8,8 +8,8 @@ writeStartEndSeparator(ColumnSizeList) :-
 writeRow(Xs, Ys) :-
     pairs_keys_values(XYs, Xs, Ys),
     maplist([X-Y]>>(
-        format(atom(Format), '|%~dC', Y),
-        writef(Format, [X])
+        format(atom(Format), '|%~dC', Y),% |%YC
+        writef(Format, [X])% print X centered in Y columns
     ), XYs), writeln('|').
 
 writeSeparator(Xs) :-
