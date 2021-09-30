@@ -5,9 +5,15 @@ sumPositive(Xs, N) :-
     foldl(plus, PositiveXs, 0, N).
   
 % 3
+unmerge(Xs, TypeListPairs) :-
+    maplist(
+        [Type-List]>>include(
+            [X]>>is_of_type(Type, X), Xs, List),
+        TypeListPairs).
+
 unmerge(Xs, Ys, Zs, Ytype, Ztype) :-
-    include([X]>>is_of_type(Ytype, X), Xs, Ys),
-    include([X]>>is_of_type(Ztype, X), Xs, Zs).
+    TypeListPairs = [Ytype-Ys, Ztype-Zs],
+    unmerge(Xs, TypeListPairs).
 
 :- A = [
     1, -1,
