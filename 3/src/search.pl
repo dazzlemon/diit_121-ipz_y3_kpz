@@ -18,11 +18,3 @@ search_(Predicate, ArgNameList, ColumnSizeList) :-
     writeSeparator(ColumnSizeList),
     writeRow(Args, ColumnSizeList),
     fail; writeStartEndSeparator(ColumnSizeList).
-
-question(ArgName, Ans) :-
-    writef('Do you want to filter by %w?\n', [ArgName]),
-    writeln('If yes input Value to filter by, otherwise input"-":'),
-    read(Ans).
-
-searchFilter(Answer, Arg) :-
-    Answer = '-' -> true; Arg = Answer. 

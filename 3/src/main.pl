@@ -2,7 +2,7 @@
 :- ensure_loaded('insert.pl').
 :- ensure_loaded('db.pl').
 :- ensure_loaded('search.pl').
-:- ensure_loaded('args_for_table_manip.pl').
+:- ensure_loaded('delete.pl').
 
 %             ID, Name
 departmentType(1, 'technical').

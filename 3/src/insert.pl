@@ -1,4 +1,5 @@
 :- ensure_loaded('args_for_table_manip.pl').
+:- ensure_loaded('predicate_arglist_to_term.pl').
 
 insert :- 
     writeln('--- INSERTING ---'),
@@ -15,24 +16,9 @@ insert(Predicate, ArgNameList) :-
     maplist([X-Y]>>(writef('Input %w: ', [X]), read(Y)), ArgPairs),% read to free vars
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
-    assertzWithArgs(Predicate, ArgList_),
+    predicateArgListToTerm(Predicate, ArgList_, Term),
+    assertz(Term),
     updateDb.
-
-assertzWithArgs(Predicate, ArgList_) :-
-    length(ArgList_, N_),
-    N is N_ - 1,
-    swritef(Format, '%w(%r%w).', [Predicate, '%w, ', N]),
-    swritef(String, Format, ArgList_),
-    term_string(Term, String),
-    assertz(Term).
-
-updateDb :-
-    tell('db.pl'),
-    listing(university),
-    listing(faculty),
-    listing(department),
-    listing(lab),
-    told.
 
 naturalNum(1).
 naturalNum(N) :-

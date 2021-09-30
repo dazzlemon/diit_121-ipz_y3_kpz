@@ -31,3 +31,19 @@ argsForTableManip(
     ['ID', 'DepartmentID'],
     [   5,             15],
     ['DepartmentID']).
+
+question(ArgName, Ans) :-
+    writef('Do you want to filter by %w?\n', [ArgName]),
+    writeln('If yes input Value to filter by, otherwise input"-":'),
+    read(Ans).
+
+searchFilter(Answer, Arg) :-
+    Answer = '-' -> true; Arg = Answer.
+
+updateDb :-
+    tell('db.pl'),
+    listing(university),
+    listing(faculty),
+    listing(department),
+    listing(lab),
+    told.
