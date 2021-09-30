@@ -12,7 +12,7 @@ insert(Predicate, ArgNameList) :-
     length(ArgNameList, N),
     length(ArgList, N),% list of empty vars
     pairs_keys_values(ArgPairs, ArgNameList, ArgList),% list of name-empty var pairs
-    maplist(readArg, ArgPairs),% read to free vars
+    maplist([X-Y]>>(writef('Input %w: ', [X]), read(Y)), ArgPairs),% read to free vars
     findFreeId(Predicate, N, ID),
     append([ID], ArgList, ArgList_),
     assertzWithArgs(Predicate, ArgList_),
@@ -45,6 +45,3 @@ findFreeId(Predicate, ArgSize, ID) :-
     length(ArgList, ArgSize),
     append([ID], ArgList, ArgList_),
     not(apply(Predicate, ArgList_)), !.
-
-readArg(X-Y) :-
-    writef('Input %w: ', [X]), read(Y).
