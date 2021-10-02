@@ -1,9 +1,5 @@
 -module(main_).
-
-% tail recursion == cool
-reverse(X) -> reverse_(X, []).
-reverse_([], R) -> R;
-reverse_([H|T], R) -> reverse_(T, [H|R]).
+-import(consumer_producer, [reverse/1]).
 
 main(_) ->
     L1 = [1, 2, 3, 4, 5],
