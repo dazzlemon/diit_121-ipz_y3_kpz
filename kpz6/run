@@ -1,0 +1,2 @@
+cd _build/default/lib/kpz6/ebin
+erl -run main
