@@ -1,7 +1,20 @@
--module(main_).
--import(consumer_producer, [reverse/1]).
+-module(main).
+-import(consumer_producer, [
+    buffer/1,
+	producer/2,
+	consumer/2
+]).
+-compile(export_all).
 
-main(_) ->
-    L1 = [1, 2, 3, 4, 5],
-    L2 = reverse(L1),
-    io:fwrite("revese(~w) -> ~w~n", [L1, L2]).
+% main(_) ->
+start() ->
+	case whereis(base) of 
+		undefined -> register(base, spawn(erl2, bufer, [[]]));
+		_ -> base!{clear}
+	end,
+	io:format("Buffer initialized, all right!~n"),
+
+	[spawn(erl2, producer, [X, 5]) || X <- lists:seq(1, 5)],
+
+	[spawn(erl2, consumer, [X, 5]) || X <- lists:seq(1, 5)],
+	io:format("Init finished....~n"). 
