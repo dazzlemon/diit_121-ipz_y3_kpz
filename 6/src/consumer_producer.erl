@@ -22,13 +22,13 @@ buffer(Buf) ->
 		{stop} -> ok 
 	end.
 
-producer(NumberProc, 0) -> io:format("Producer~w finished ~n", [NumberProc]);
 producer(NumberProc, CountIter) ->
-	% rand:seed(exs928ss, [NumberProc, CountIter, 0]),
+	[producer_iteration(NumberProc) || _ <- lists:seq(CountIter)].
+
+producer_iteration(NumberProc) ->
 	Elem = [NumberProc|produce(4)],
 	io:format("Thread ~w produced ~w~n", [NumberProc, Elem]),
-	base!{put, Elem}, 
-	producer(NumberProc, CountIter - 1).
+	base!{put, Elem}.
 
 produce(X) ->
 	[rand_uniform(-5, 5) || _ <- lists:seq(1, X)].

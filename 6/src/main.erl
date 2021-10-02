@@ -14,7 +14,7 @@ start() ->
 	end,
 	io:format("Buffer initialized, all right!~n"),
 
-	[spawn(erl2, producer, [X, 5]) || X <- lists:seq(1, 5)],
+	[spawn(main, producer, [X, 5]) || X <- lists:seq(1, 5)],
 
-	[spawn(erl2, consumer, [X, 5]) || X <- lists:seq(1, 5)],
+	[spawn(main, consumer, [X, 5]) || X <- lists:seq(1, 5)],
 	io:format("Init finished....~n"). 
